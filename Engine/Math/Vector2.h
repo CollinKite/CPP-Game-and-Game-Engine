@@ -1,4 +1,6 @@
 #pragma once
+#include <cmath>
+
 namespace crae
 {
 	struct Vector2 //default public
@@ -44,5 +46,9 @@ namespace crae
 		//Vector2 == Vector2
 		bool operator == (const Vector2& v) const { return (this->x == v.x && this->y == v.y); }
 		bool operator != (const Vector2& v) const { return (this->x != v.x || this->y != v.y); }
+
+		//Functions
+		inline float LengthSqr() { return x * x + y * y; }
+		inline float Length() { return std::sqrt(x * x + y * y); }
 	};
 }
