@@ -48,7 +48,41 @@ namespace crae
 		bool operator != (const Vector2& v) const { return (this->x != v.x || this->y != v.y); }
 
 		//Functions
-		inline float LengthSqr() { return x * x + y * y; }
-		inline float Length() { return std::sqrt(x * x + y * y); }
+		float LengthSqr();
+		float Length();
+
+		float DistanceSqr(const Vector2& v);
+		float Distance(const Vector2& v);
+
+		Vector2 Normalized();
+		void Normalize();
+
+		static Vector2 Rotate(const Vector2& v, float angle);
 	};
+
+	inline float Vector2::LengthSqr() { return x * x + y * y; }
+
+	inline float Vector2::Length() { return std::sqrt(LengthSqr()); }
+
+	inline float Vector2::DistanceSqr(const Vector2& v) { return ((*this) - v).LengthSqr(); }
+
+	inline float Vector2::Distance(const Vector2& v) { return ((*this) - v).Length(); }
+	
+	inline Vector2 Vector2::Normalized()
+	{
+		float length = Length();
+
+		return Vector2{x/ length, y/length};
+	}
+	inline void Vector2::Normalize()
+	{
+		(*this) /= Length();
+	}
+	inline Vector2 Vector2::Rotate(const Vector2& v, float angle)
+	{
+		float x = v.x * std::cos(angle) - v.y * std::sin(angle);
+		float y = v.y * std::sin(angle) - v.y * std::sin(angle);
+
+		return Vector2{x, y};
+	}
 }
