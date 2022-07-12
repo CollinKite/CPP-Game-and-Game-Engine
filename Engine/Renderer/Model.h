@@ -12,7 +12,7 @@ namespace crae
 		{
 		}
 
-		void Draw(Renderer& renderer, Vector2& position, float scale);
+		void Draw(Renderer& renderer, Vector2& position, float angle, float scale);
 
 
 	private:

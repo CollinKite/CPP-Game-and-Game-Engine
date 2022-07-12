@@ -7,6 +7,7 @@ namespace Math
 {
 	int sqr(int v);
 	inline int half(int v) { return v/2; }
+
 }
 
 //#endif //__MATH_UTILS_H__

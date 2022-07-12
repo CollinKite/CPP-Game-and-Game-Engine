@@ -81,7 +81,7 @@ namespace crae
 	inline Vector2 Vector2::Rotate(const Vector2& v, float angle)
 	{
 		float x = v.x * std::cos(angle) - v.y * std::sin(angle);
-		float y = v.y * std::sin(angle) - v.y * std::sin(angle);
+		float y = v.x * std::sin(angle) + v.y * std::cos(angle);
 
 		return Vector2{x, y};
 	}

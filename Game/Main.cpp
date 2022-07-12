@@ -25,15 +25,17 @@ int main()
 
 
 	crae::Vector2 move{ 3, 0 };
+	float angle = 0;
 
 	vector<crae::Vector2> points
 	{
-		{ -5.00, 4.00 },
-		{ 0.00, -9.00 },
-		{ 5.00, 4.00 },
-		{ 0.00, 1.00 },
-		{ -5.00, 4.00 }
+		{ -5.00f, 4.00f },
+		{ 0.00f, -9.00f },
+		{ 5.00f, 4.00f },
+		{ 0.00f, 1.00f },
+		{ -5.00f, 4.00f }
 	};
+
 	crae::Model model(points, crae::Color{ 255, 255, 255, 255 });
 
 	crae::Vector2 position{400, 300};
@@ -84,10 +86,11 @@ int main()
 			//std::cout << "left\n";
 			position.y += 2;
 		}
+		angle += 0.2f;
 
 
 		renderer.BeginFrame();
-		model.Draw(renderer, position, 5);
+		model.Draw(renderer, position, angle, 5);
 
 		renderer.EndFrame();
 	}	
