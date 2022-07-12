@@ -60,33 +60,41 @@ int main()
 	while (!quit)
 	{
 		inputSystem.Update();
-
+		float thrust = 0;
 		if (inputSystem.GetKeyDown(crae::key_escape)) quit = true;
 
 		if (inputSystem.GetKeyDown(crae::key_left))
 		{
 			//std::cout << "left\n";
-			position.x -= 2;
+			//position.x -= 2;
+			angle -= 0.1f;
 		}
 
 		if (inputSystem.GetKeyDown(crae::key_right))
 		{
 			//std::cout << "left\n";
-			position.x += 2;
+			//position.x += 2;
+			angle += 0.1f;
 		}
 
 		if (inputSystem.GetKeyDown(crae::key_up))
 		{
+			thrust = 8;
 			//std::cout << "left\n";
-			position.y -= 2;
+			//position.y -= 2;
 		}
 
-		if (inputSystem.GetKeyDown(crae::key_down))
-		{
-			//std::cout << "left\n";
-			position.y += 2;
-		}
-		angle += 0.2f;
+		//if (inputSystem.GetKeyDown(crae::key_down))
+		//{
+		//	//std::cout << "left\n";
+		//	position.y += 2;
+		//}
+
+		crae::Vector2 direction{ 0, -1 };
+
+		direction = crae::Vector2::Rotate(direction, angle);
+
+		position += direction * thrust;
 
 
 		renderer.BeginFrame();
