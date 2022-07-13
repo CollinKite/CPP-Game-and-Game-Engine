@@ -5,6 +5,7 @@
 #include "Renderer/Model.h"
 #include "Core/File.h"
 #include "Math/MathUtils.h"
+#include "Framework/Actor.h"
 
 #include <iostream>
 #include<vector>
@@ -15,19 +16,25 @@ int main()
 {
 	crae::SetFilePath("../Assets");
 
-	crae::Vector2 position{400, 300};
-	float angle = 0;
+	// ** MAKE ACTOR **
+	//transform
+	crae::Transform transform;
+	transform.postition = crae::Vector2{ 400,300 };
+	transform.rotation = 0;
+	transform.scale = 5;
 
 	vector<crae::Vector2> points
 	{
-		{ -5.00f, 4.00f },
-		{ 0.00f, -9.00f },
-		{ 5.00f, 4.00f },
-		{ 0.00f, 1.00f },
-		{ -5.00f, 4.00f }
+		{ 3.00f, 0.00 },
+		{ -2.00f, -3.00 },
+		{ -1.00f, 0.00 },
+		{ -2.00f, 3.00 },
+		{ 3.00f, 0.00 }
 	};
 
 	crae::Model model(points, crae::Color{ 255, 255, 255, 255 });
+
+	crae::Actor player{ model, transform };
 
 	crae::initializeMemory(); //Calls debug function for mem leak
 
@@ -71,14 +78,14 @@ int main()
 		{
 			//std::cout << "left\n";
 			//position.x -= 2;
-			angle -= 0.1f;
+			player.GetTransform().rotation -= 0.1f;
 		}
 
 		if (inputSystem.GetKeyDown(crae::key_right))
 		{
 			//std::cout << "left\n";
 			//position.x += 2;
-			angle += 0.1f;
+			player.GetTransform().rotation += 0.1f;
 		}
 
 		if (inputSystem.GetKeyDown(crae::key_up))
@@ -96,19 +103,19 @@ int main()
 
 		//face target
 		crae::Vector2 target = inputSystem.GetMousePosition();
-		target = target - position;
-		angle = target.GetAngle();
+		target = target - player.GetTransform().postition;
+		player.GetTransform().rotation = target.GetAngle();
 
 		crae::Vector2 direction{ 1, 0 };
 
-		direction = crae::Vector2::Rotate(direction, angle);
+		direction = crae::Vector2::Rotate(direction, player.GetTransform().rotation);
 		crae::Vector2 velocity = direction * thrust;
 
-		position += velocity;
+		player.GetTransform().postition += velocity;
 
 
 		renderer.BeginFrame();
-		model.Draw(renderer, position, angle + math::HalfPi, 5);
+		player.Draw(renderer);
 
 		renderer.EndFrame();
 	}	
