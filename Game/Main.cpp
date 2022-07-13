@@ -60,6 +60,24 @@ int main()
 	while (!quit)
 	{
 		inputSystem.Update();
+
+		std::cout << "x: " << inputSystem.GetMousePosition().x << "y: " << inputSystem.GetMousePosition().y << std::endl;
+
+		if (inputSystem.GetButtonDown(crae::button_left))
+		{
+			std::cout << "Left Mouse Button Pressed";
+		}
+
+		if (inputSystem.GetButtonDown(crae::button_middle))
+		{
+			std::cout << "Middle Mouse Button Pressed";
+		}
+
+		if (inputSystem.GetButtonDown(crae::button_right))
+		{
+			std::cout << "Right Mouse Button Pressed";
+		}
+
 		float thrust = 0;
 		if (inputSystem.GetKeyDown(crae::key_escape)) quit = true;
 
@@ -89,6 +107,7 @@ int main()
 		//	//std::cout << "left\n";
 		//	position.y += 2;
 		//}
+
 
 		crae::Vector2 direction{ 0, -1 };
 
