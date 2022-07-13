@@ -5,7 +5,7 @@
 #include "Renderer/Model.h"
 #include "Core/File.h"
 #include "Math/MathUtils.h"
-#include "Framework/Actor.h"
+#include "Player.h"
 
 #include <iostream>
 #include<vector>
@@ -34,7 +34,7 @@ int main()
 
 	crae::Model model(points, crae::Color{ 255, 255, 255, 255 });
 
-	crae::Actor player{ model, transform };
+	Player player{ model, transform };
 
 	crae::initializeMemory(); //Calls debug function for mem leak
 
@@ -76,8 +76,6 @@ int main()
 
 		if (inputSystem.GetKeyDown(crae::key_left))
 		{
-			//std::cout << "left\n";
-			//position.x -= 2;
 			player.GetTransform().rotation -= 0.1f;
 		}
 
