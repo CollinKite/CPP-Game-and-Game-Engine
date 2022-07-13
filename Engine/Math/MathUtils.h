@@ -1,13 +1,23 @@
-#pragma once //include guard
-//#ifndef __MATH_UTILS_H__ //pragma alternitive
-//#define __MATH_UTILS_H__
+#pragma once
 
-
-namespace Math
+namespace math
 {
-	int sqr(int v);
-	inline int half(int v) { return v/2; }
+    const float Pi = 3.14159265359;
+    const float DoublePi = 6.28318530718;
+    const float HalfPi = 1.57079632679;
 
+    inline float DegToRad(float degrees) 
+    { 
+        return degrees * (Pi / 180); 
+    }
+
+    inline float RadtoDeg(float radians)
+    {
+        return radians * (180 / Pi);
+    }
+
+    int sqr(int v)
+    {
+        return v * v;
+    }
 }
-
-//#endif //__MATH_UTILS_H__

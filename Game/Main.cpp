@@ -4,6 +4,7 @@
 #include "Input/InputSystem.h"
 #include "Renderer/Model.h"
 #include "Core/File.h"
+#include "Math/MathUtils.h"
 
 #include <iostream>
 #include<vector>
@@ -12,19 +13,9 @@ using namespace std;
 
 int main()
 {
-	cout << crae::GetFilePath() << endl;
 	crae::SetFilePath("../Assets");
-	cout << crae::GetFilePath() << endl;
-	size_t size;
-	crae::GetFileSize("Model.txt", size);
-	cout << size << endl;
 
-	std::string buffer;
-	crae::ReadFile("Model.txt", buffer);
-	cout << buffer << endl;
-
-
-	crae::Vector2 move{ 3, 0 };
+	crae::Vector2 position{400, 300};
 	float angle = 0;
 
 	vector<crae::Vector2> points
@@ -38,21 +29,16 @@ int main()
 
 	crae::Model model(points, crae::Color{ 255, 255, 255, 255 });
 
-	crae::Vector2 position{400, 300};
-
-	//model.push_back(crae::Vector2(45, 56));
-	//model.push_back(crae::Vector2(87, 200));
-	//model.push_back(crae::Vector2(120, 150));
-	//model.push_back(crae::Vector2(10, 30));
-
 	crae::initializeMemory(); //Calls debug function for mem leak
 
+	//Create Systems
 	crae::Renderer renderer;
 	crae::InputSystem inputSystem;
 
 	renderer.Initialize();
 	inputSystem.Initialize();
 
+	//Create Window
 	renderer.CreateWindow("Neumont", 800, 600);
 	renderer.SetClearColor(crae::Color{ 0,0,0,255 });
 
@@ -61,21 +47,21 @@ int main()
 	{
 		inputSystem.Update();
 
-		std::cout << "x: " << inputSystem.GetMousePosition().x << "y: " << inputSystem.GetMousePosition().y << std::endl;
+		cout << "x: " << inputSystem.GetMousePosition().x << endl << "y: " << inputSystem.GetMousePosition().y << endl;
 
 		if (inputSystem.GetButtonDown(crae::button_left))
 		{
-			std::cout << "Left Mouse Button Pressed";
+			cout << "Left Mouse Button Pressed";
 		}
 
 		if (inputSystem.GetButtonDown(crae::button_middle))
 		{
-			std::cout << "Middle Mouse Button Pressed";
+			cout << "Middle Mouse Button Pressed";
 		}
 
 		if (inputSystem.GetButtonDown(crae::button_right))
 		{
-			std::cout << "Right Mouse Button Pressed";
+			cout << "Right Mouse Button Pressed";
 		}
 
 		float thrust = 0;
@@ -97,7 +83,7 @@ int main()
 
 		if (inputSystem.GetKeyDown(crae::key_up))
 		{
-			thrust = 8;
+			thrust = 10;
 			//std::cout << "left\n";
 			//position.y -= 2;
 		}
@@ -108,16 +94,21 @@ int main()
 		//	position.y += 2;
 		//}
 
+		//face target
+		crae::Vector2 target = inputSystem.GetMousePosition();
+		target = target - position;
+		angle = target.GetAngle();
 
-		crae::Vector2 direction{ 0, -1 };
+		crae::Vector2 direction{ 1, 0 };
 
 		direction = crae::Vector2::Rotate(direction, angle);
+		crae::Vector2 velocity = direction * thrust;
 
-		position += direction * thrust;
+		position += velocity;
 
 
 		renderer.BeginFrame();
-		model.Draw(renderer, position, angle, 5);
+		model.Draw(renderer, position, angle + math::HalfPi, 5);
 
 		renderer.EndFrame();
 	}	

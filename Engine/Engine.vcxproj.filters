@@ -21,6 +21,9 @@
     <Filter Include="Source Files\Input">
       <UniqueIdentifier>{70875812-b4b9-466e-8655-668f660f7cb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Framework">
+      <UniqueIdentifier>{dacedaae-f61a-4d57-853c-752ff8fe3161}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
