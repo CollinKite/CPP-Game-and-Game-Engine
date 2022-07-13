@@ -54,7 +54,7 @@ int main()
 	{
 		inputSystem.Update();
 
-		cout << "x: " << inputSystem.GetMousePosition().x << endl << "y: " << inputSystem.GetMousePosition().y << endl;
+		cout << "x: " << inputSystem.GetMousePosition().x << " " << "y: " << inputSystem.GetMousePosition().y << endl;
 
 		if (inputSystem.GetButtonDown(crae::button_left))
 		{
@@ -63,12 +63,12 @@ int main()
 
 		if (inputSystem.GetButtonDown(crae::button_middle))
 		{
-			cout << "Middle Mouse Button Pressed";
+			cout << "Middle Mouse Button Pressed" << endl;
 		}
 
 		if (inputSystem.GetButtonDown(crae::button_right))
 		{
-			cout << "Right Mouse Button Pressed";
+			cout << "Right Mouse Button Pressed" << endl;
 		}
 
 		float thrust = 0;
