@@ -1,16 +1,12 @@
+#include "Engine.h"
 #include "Renderer/Renderer.h"
-#include "Core\Memory.h" //header file to check for mem leak
-#include "Math/Random.h"
-#include "Input/InputSystem.h"
-#include "Renderer/Model.h"
-#include "Core/File.h"
-#include "Math/MathUtils.h"
 #include "Player.h"
 
 #include <iostream>
 #include<vector>
 
 using namespace std;
+
 
 int main()
 {
@@ -40,10 +36,10 @@ int main()
 
 	//Create Systems
 	crae::Renderer renderer;
-	crae::InputSystem inputSystem;
+	
 
 	renderer.Initialize();
-	inputSystem.Initialize();
+	crae::g_inputSystem.Initialize();
 
 	//Create Window
 	renderer.CreateWindow("Neumont", 800, 600);
@@ -52,41 +48,41 @@ int main()
 	bool quit = false;
 	while (!quit)
 	{
-		inputSystem.Update();
+		crae::g_inputSystem.Update();
 
-		cout << "x: " << inputSystem.GetMousePosition().x << " " << "y: " << inputSystem.GetMousePosition().y << endl;
+		cout << "x: " << crae::g_inputSystem.GetMousePosition().x << " " << "y: " << crae::g_inputSystem.GetMousePosition().y << endl;
 
-		if (inputSystem.GetButtonDown(crae::button_left))
+		if (crae::g_inputSystem.GetButtonDown(crae::button_left))
 		{
 			cout << "Left Mouse Button Pressed";
 		}
 
-		if (inputSystem.GetButtonDown(crae::button_middle))
+		if (crae::g_inputSystem.GetButtonDown(crae::button_middle))
 		{
 			cout << "Middle Mouse Button Pressed" << endl;
 		}
 
-		if (inputSystem.GetButtonDown(crae::button_right))
+		if (crae::g_inputSystem.GetButtonDown(crae::button_right))
 		{
 			cout << "Right Mouse Button Pressed" << endl;
 		}
 
 		float thrust = 0;
-		if (inputSystem.GetKeyDown(crae::key_escape)) quit = true;
+		if (crae::g_inputSystem.GetKeyDown(crae::key_escape)) quit = true;
 
-		if (inputSystem.GetKeyDown(crae::key_left))
+		if (crae::g_inputSystem.GetKeyDown(crae::key_left))
 		{
 			player.GetTransform().rotation -= 0.1f;
 		}
 
-		if (inputSystem.GetKeyDown(crae::key_right))
+		if (crae::g_inputSystem.GetKeyDown(crae::key_right))
 		{
 			//std::cout << "left\n";
 			//position.x += 2;
 			player.GetTransform().rotation += 0.1f;
 		}
 
-		if (inputSystem.GetKeyDown(crae::key_up))
+		if (crae::g_inputSystem.GetKeyDown(crae::key_up))
 		{
 			thrust = 10;
 			//std::cout << "left\n";
@@ -100,7 +96,7 @@ int main()
 		//}
 
 		//face target
-		crae::Vector2 target = inputSystem.GetMousePosition();
+		crae::Vector2 target = crae::g_inputSystem.GetMousePosition();
 		target = target - player.GetTransform().postition;
 		player.GetTransform().rotation = target.GetAngle();
 

@@ -85,5 +85,8 @@
     <ClInclude Include="Framework\Actor.h">
       <Filter>Source Files\Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
