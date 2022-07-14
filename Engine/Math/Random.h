@@ -2,7 +2,7 @@
 #include <random>
 namespace crae
 {
-	void seedRandom(int seed) { srand(seed); }
+	inline void seedRandom(int seed) { srand(seed); }
 
 	inline int random() { return rand(); }
 	inline int random(int max) { return random() % max; } //exclusive (max = 10) 0 -> 9 | to be inclusive (1-10) +1

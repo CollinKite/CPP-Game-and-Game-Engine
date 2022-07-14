@@ -1,4 +1,7 @@
 #include "Model.h"
+#include "../Core/File.h"	
+#include <sstream>
+#include <iostream>
 
 namespace crae 
 {
@@ -17,6 +20,34 @@ namespace crae
 			crae::Vector2 p2 = crae::Vector2::Rotate((m_points[i + 1] * scale), angle) + position;
 
 			renderer.DrawLine(p1, p2, m_color);
+		}
+	}
+	void Model::Load(const std::string& filename)
+	{
+		std::string buffer;
+
+		crae::ReadFile(filename, buffer);
+
+		// read color
+		m_color.r = 255;
+		m_color.g = 255;
+		m_color.b = 255;
+		m_color.a = 255;
+
+		std::istringstream stream(buffer);
+		std::string line;
+		std::getline(stream, line);
+
+		size_t numpoints = std::stoi(line); //unsigned int always want it to be positive
+
+		std::cout << line << std::endl;
+
+		for (size_t i = 0; i < numpoints; i++)
+		{
+			Vector2 point;
+			stream << point;
+
+			m_points.push_back(point);
 		}
 	}
 }

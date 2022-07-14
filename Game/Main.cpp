@@ -28,7 +28,10 @@ int main()
 		{ 3.00f, 0.00 }
 	};
 
-	crae::Model model(points, crae::Color{ 255, 255, 255, 255 });
+	//crae::Model model(points, crae::Color{ 255, 255, 255, 255 });
+	crae::Model model;
+	model.Load("model.txt");
+
 
 	Player player{ model, transform };
 

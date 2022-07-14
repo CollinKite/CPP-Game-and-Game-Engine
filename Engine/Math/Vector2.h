@@ -1,5 +1,7 @@
 #pragma once
 #include <cmath>
+#include <sstream>
+#include <string>
 
 namespace crae
 {
@@ -61,6 +63,21 @@ namespace crae
 		static Vector2 Rotate(const Vector2& v, float angle);
 
 	};
+
+	inline std::istream& operator << (std::istream& stream, Vector2& v)
+	{
+		std::string line;
+		std::getline(stream, line);
+
+		// { ##,## }
+		std::string xs = line.substr(line.find("{") + 1, line.find(",") - line.find("{") + 1);
+		v.x = std::stof(xs);
+		std::string ys = line.substr(line.find(",") + 1, line.find("}") - line.find(",") + 1);
+		v.y = std::stof(ys);
+
+		return stream;
+	}
+
 	inline float Vector2::LengthSqr() { return x * x + y * y; }
 
 	inline float Vector2::Length() { return std::sqrt(LengthSqr()); }

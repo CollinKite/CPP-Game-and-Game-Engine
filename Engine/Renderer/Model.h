@@ -1,6 +1,7 @@
 #pragma once
 #include "Renderer.h"
 #include <vector>
+#include <string>
 
 namespace crae
 {
@@ -13,6 +14,8 @@ namespace crae
 		}
 
 		void Draw(Renderer& renderer, Vector2& position, float angle, float scale);
+
+		void Load(const std::string& filename);
 
 
 	private:
