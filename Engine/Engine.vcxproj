@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClCompile Include="Core\File.cpp" />
     <ClCompile Include="Core\Memory.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Framework\Actor.cpp" />
     <ClCompile Include="Input\InputSystem.cpp" />
     <ClCompile Include="Math\MathUtils.cpp" />

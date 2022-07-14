@@ -1,6 +1,6 @@
-#include "Engine.h"
-#include "Renderer/Renderer.h"
+#include "Renderer/Model.h"
 #include "Player.h"
+#include "Engine.h"
 
 #include <iostream>
 #include<vector>
@@ -35,83 +35,30 @@ int main()
 	crae::initializeMemory(); //Calls debug function for mem leak
 
 	//Create Systems
-	crae::Renderer renderer;
+	crae::Renderer g_renderer;
 	
 
-	renderer.Initialize();
+	g_renderer.Initialize();
 	crae::g_inputSystem.Initialize();
 
 	//Create Window
-	renderer.CreateWindow("Neumont", 800, 600);
-	renderer.SetClearColor(crae::Color{ 0,0,0,255 });
+	g_renderer.CreateWindow("Neumont", 800, 600);
+	g_renderer.SetClearColor(crae::Color{ 0,0,0,255 });
 
 	bool quit = false;
 	while (!quit)
 	{
 		crae::g_inputSystem.Update();
 
-		cout << "x: " << crae::g_inputSystem.GetMousePosition().x << " " << "y: " << crae::g_inputSystem.GetMousePosition().y << endl;
-
-		if (crae::g_inputSystem.GetButtonDown(crae::button_left))
-		{
-			cout << "Left Mouse Button Pressed";
-		}
-
-		if (crae::g_inputSystem.GetButtonDown(crae::button_middle))
-		{
-			cout << "Middle Mouse Button Pressed" << endl;
-		}
-
-		if (crae::g_inputSystem.GetButtonDown(crae::button_right))
-		{
-			cout << "Right Mouse Button Pressed" << endl;
-		}
-
-		float thrust = 0;
 		if (crae::g_inputSystem.GetKeyDown(crae::key_escape)) quit = true;
 
-		if (crae::g_inputSystem.GetKeyDown(crae::key_left))
-		{
-			player.GetTransform().rotation -= 0.1f;
-		}
-
-		if (crae::g_inputSystem.GetKeyDown(crae::key_right))
-		{
-			//std::cout << "left\n";
-			//position.x += 2;
-			player.GetTransform().rotation += 0.1f;
-		}
-
-		if (crae::g_inputSystem.GetKeyDown(crae::key_up))
-		{
-			thrust = 10;
-			//std::cout << "left\n";
-			//position.y -= 2;
-		}
-
-		//if (inputSystem.GetKeyDown(crae::key_down))
-		//{
-		//	//std::cout << "left\n";
-		//	position.y += 2;
-		//}
-
-		//face target
-		crae::Vector2 target = crae::g_inputSystem.GetMousePosition();
-		target = target - player.GetTransform().postition;
-		player.GetTransform().rotation = target.GetAngle();
-
-		crae::Vector2 direction{ 1, 0 };
-
-		direction = crae::Vector2::Rotate(direction, player.GetTransform().rotation);
-		crae::Vector2 velocity = direction * thrust;
-
-		player.GetTransform().postition += velocity;
+		player.Update();
 
 
-		renderer.BeginFrame();
-		player.Draw(renderer);
+		g_renderer.BeginFrame();
+		player.Draw(g_renderer);
 
-		renderer.EndFrame();
+		g_renderer.EndFrame();
 	}	
-	renderer.Shutdown();
+	g_renderer.Shutdown();
 }

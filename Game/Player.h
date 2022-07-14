@@ -10,5 +10,6 @@ public:
 	void Update() override;
 
 private:
-	float m_speed{ 5 };
+	float m_speed{ 0 };
+	float m_maxspeed{ 10 };
 };
