@@ -4,12 +4,18 @@
 
 #include <iostream>
 #include<vector>
-
 using namespace std;
 
 
 int main()
 {
+	//time
+	//uint32_t time = GetTickCount();//Dword or uint32_t (4 bytes, 32 bits)
+	//cout << time << endl;
+
+
+
+
 	crae::SetFilePath("../Assets");
 
 	// ** MAKE ACTOR **
@@ -52,6 +58,9 @@ int main()
 	while (!quit)
 	{
 		crae::g_inputSystem.Update();
+		crae::g_time.Tick(); //Increment time, and frame time
+
+		//std::cout << crae::g_time.deltaTime << std::endl;
 
 		if (crae::g_inputSystem.GetKeyDown(crae::key_escape)) quit = true;
 

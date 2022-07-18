@@ -1,12 +1,13 @@
 #include "Player.h"
 #include "Engine.h"
+#include "Math/MathUtils.h"
 
 #include <iostream>
 
 void Player::Update()
 {
 
-	std::cout << "x: " << crae::g_inputSystem.GetMousePosition().x << " " << "y: " << crae::g_inputSystem.GetMousePosition().y << std::endl;
+	//std::cout << "x: " << crae::g_inputSystem.GetMousePosition().x << " " << "y: " << crae::g_inputSystem.GetMousePosition().y << std::endl;
 
 	if (crae::g_inputSystem.GetButtonDown(crae::button_left))
 	{
@@ -28,7 +29,7 @@ void Player::Update()
 
 	if (crae::g_inputSystem.GetKeyDown(crae::key_left))
 	{
-		m_transform.rotation -= 0.1f;
+		m_transform.rotation -= math:: Pi * crae::g_time.deltaTime;
 	}
 
 	if (crae::g_inputSystem.GetKeyDown(crae::key_right))
@@ -59,7 +60,7 @@ void Player::Update()
 	crae::Vector2 direction{ 1, 0 };
 
 	direction = crae::Vector2::Rotate(direction, m_transform.rotation);
-	crae::Vector2 velocity = direction * thrust;
+	crae::Vector2 velocity = direction * thrust * crae::g_time.deltaTime; // move speed per second
 
 	m_transform.postition += velocity;
 
