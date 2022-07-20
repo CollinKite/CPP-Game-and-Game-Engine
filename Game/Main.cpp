@@ -18,6 +18,8 @@ int main()
 
 	crae::SetFilePath("../Assets");
 
+	crae::Scene scene;
+
 	// ** MAKE ACTOR **
 	//transform
 	crae::Transform transform;
@@ -25,23 +27,33 @@ int main()
 	transform.rotation = 0;
 	transform.scale = 5;
 
-	vector<crae::Vector2> points
+	for (int i = 0; i < 20; i++)
 	{
-		{ 3.00f, 0.00 },
-		{ -2.00f, -3.00 },
-		{ -1.00f, 0.00 },
-		{ -2.00f, 3.00 },
-		{ 3.00f, 0.00 }
-	};
+		transform.postition.x = crae::randomf(800);
+		transform.postition.y = crae::randomf(600);
+		transform.rotation = crae::randomf(math::DoublePi);
+		std::unique_ptr<Player> player = std::make_unique<Player>(crae::Model{ "model.txt" }, transform);
+		scene.Add(std::move(player));
+	}
 
 	//crae::Model model(points, crae::Color{ 255, 255, 255, 255 });
-	crae::Model model;
-	model.Load("model.txt");
+	/*crae::Model model;
+	model.Load("model.txt");*/
+	//Player player{ crae::Model{"player.txt"}, transform }; doesn't work need to fix
 
+	
 
-	Player player{ model, transform };
+	//Player player{ model, transform };
 
 	crae::initializeMemory(); //Calls debug function for mem leak
+
+	//array<int, 3> anumbers = { 4,5,6 }; //Stack
+	//vector<int> numbers = { 3,6,7 }; //new, Heap
+
+	//vector<int>::iterator iter = numbers.begin();
+	//auto iter = numbers.begin();
+	//cout << *iter << endl;
+
 
 	//Create Systems
 	crae::Renderer g_renderer;
@@ -64,11 +76,11 @@ int main()
 
 		if (crae::g_inputSystem.GetKeyDown(crae::key_escape)) quit = true;
 
-		player.Update();
+		scene.Update();
 
 
 		g_renderer.BeginFrame();
-		player.Draw(g_renderer);
+		scene.Draw(g_renderer);
 
 		g_renderer.EndFrame();
 	}	

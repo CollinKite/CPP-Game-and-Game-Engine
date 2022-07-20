@@ -64,7 +64,7 @@ namespace crae
 
 	};
 
-	inline std::istream& operator << (std::istream& stream, Vector2& v)
+	inline std::istream& operator >> (std::istream& stream, Vector2& v)
 	{
 		std::string line;
 		std::getline(stream, line);

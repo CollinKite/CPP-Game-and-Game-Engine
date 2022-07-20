@@ -5,6 +5,10 @@
 
 namespace crae 
 {
+	Model::Model(const std::string& filename)
+	{
+		Load(filename);
+	}
 	void Model::Draw(Renderer& renderer, Vector2& position, float angle, float scale)
 	{
 		//crae::Color color;
@@ -29,23 +33,20 @@ namespace crae
 		crae::ReadFile(filename, buffer);
 
 		// read color
-		m_color.r = 255;
-		m_color.g = 255;
-		m_color.b = 255;
-		m_color.a = 255;
-
 		std::istringstream stream(buffer);
+		stream >> m_color;
+
 		std::string line;
 		std::getline(stream, line);
 
 		size_t numpoints = std::stoi(line); //unsigned int always want it to be positive
 
-		std::cout << line << std::endl;
+		//std::cout << line << std::endl;
 
 		for (size_t i = 0; i < numpoints; i++)
 		{
 			Vector2 point;
-			stream << point;
+			stream >> point;
 
 			m_points.push_back(point);
 		}

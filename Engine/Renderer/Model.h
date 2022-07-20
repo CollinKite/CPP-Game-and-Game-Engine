@@ -13,13 +13,15 @@ namespace crae
 		{
 		}
 
+		Model(const std::string& filename);
+
 		void Draw(Renderer& renderer, Vector2& position, float angle, float scale);
 
 		void Load(const std::string& filename);
 
 
 	private:
-		crae::Color m_color;
+		crae::Color m_color {0,0,0,0};
 		std::vector<crae::Vector2> m_points;
 	};
 }

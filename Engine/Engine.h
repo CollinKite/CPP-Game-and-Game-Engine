@@ -1,11 +1,18 @@
 #pragma once
-#include "Input/InputSystem.h"
+
 #include "Core\Memory.h" //header file to check for mem leak
 #include "Core/File.h"
+
+#include "Framework/Actor.h"
+#include "Framework/Scene.h"
+
+#include "Input/InputSystem.h"
+
 #include "Renderer/Renderer.h"
 #include "Math/Random.h"
 #include "Core/Time.h"
-//#include "Math/MathUtils.h"
+#include "Math/MathUtils.h"
+
 
 namespace crae
 {
