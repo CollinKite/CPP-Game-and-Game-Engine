@@ -17,6 +17,11 @@ namespace crae
 
 		friend class Scene;
 	protected:
+		bool m_destroy = false;
+		//physics
+		float m_damping = 1;
+		Vector2 m_velocity;
+
 		Scene* m_scene = nullptr;
 		Model m_model;
 	};

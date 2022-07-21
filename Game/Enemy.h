@@ -5,10 +5,12 @@
 	{
 	public:
 		Enemy() = default;
-		Enemy(const crae::Model& model, const crae::Transform& transform) : Actor{ model, transform } {}
+		Enemy(const crae::Model& model, const crae::Transform& transform) : Actor{ model, transform } { Initialize(); }
 
+		void Initialize();
 		void Update() override;
 
 	private:
 		float m_speed = 12;
+		float m_fireTimer = 0;
 	};

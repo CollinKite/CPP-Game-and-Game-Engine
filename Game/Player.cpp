@@ -12,17 +12,17 @@ void Player::Update()
 
 	if (crae::g_inputSystem.GetButtonDown(crae::button_left))
 	{
-		std::cout << "Left Mouse Button Pressed";
+		//std::cout << "Left Mouse Button Pressed";
 	}
 
 	if (crae::g_inputSystem.GetButtonDown(crae::button_middle))
 	{
-		std::cout << "Middle Mouse Button Pressed" << std::endl;
+		//std::cout << "Middle Mouse Button Pressed" << std::endl;
 	}
 
 	if (crae::g_inputSystem.GetButtonDown(crae::button_right))
 	{
-		std::cout << "Right Mouse Button Pressed" << std::endl;
+		//std::cout << "Right Mouse Button Pressed" << std::endl;
 	}
 
 	float thrust = m_speed;
@@ -59,18 +59,23 @@ void Player::Update()
 	m_transform.rotation = target.GetAngle();*/
 
 
-	//Calculate Velocity
+	//Calculate force
 	crae::Vector2 direction{ 1, 0 };
 
 	direction = crae::Vector2::Rotate(direction, m_transform.rotation);
-	crae::Vector2 velocity = direction * thrust * crae::g_time.deltaTime; // move speed per second
+	crae::Vector2 force = direction * thrust * crae::g_time.deltaTime; // move speed per second
+	//Apply force to velocity
+	m_velocity += force;
+	//Apply drag
+	m_damping = 5;
+	m_velocity *= 1.0f / (1.0f + m_damping * crae::g_time.deltaTime);
 
-	m_transform.postition += velocity;
+	m_transform.postition += m_velocity * crae::g_time.deltaTime;
 
-	if (m_transform.postition.x > crae::g_renderer.GetWidth()) m_transform.postition.x = 0;
-	if (m_transform.postition.x < 0) m_transform.postition.x = crae::g_renderer.GetWidth();
-	if (m_transform.postition.y > crae::g_renderer.GetHeight()) m_transform.postition.y = 0;
-	if (m_transform.postition.y < 0) m_transform.postition.y = crae::g_renderer.GetHeight();
+	if (m_transform.postition.x > (float)crae::g_renderer.GetWidth()) m_transform.postition.x = 0;
+	if (m_transform.postition.x < 0) m_transform.postition.x = (float)crae::g_renderer.GetWidth();
+	if (m_transform.postition.y > (float)crae::g_renderer.GetHeight()) m_transform.postition.y = 0;
+	if (m_transform.postition.y < 0) m_transform.postition.y = (float)crae::g_renderer.GetHeight();
 
 	//Fire bullet
 	if (crae::g_inputSystem.GetKeyState(crae::key_space) == crae::InputSystem::Held)

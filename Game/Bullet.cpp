@@ -3,6 +3,13 @@
 
 	void Bullet::Update()
 	{
+		//
+		m_lifespan -= crae::g_time.deltaTime;
+		if (m_lifespan <= 0)
+		{
+			m_destroy = true;
+		}
+
 		crae::Vector2 direction{ 1, 0 };
 
 		direction = crae::Vector2::Rotate(direction, m_transform.rotation);

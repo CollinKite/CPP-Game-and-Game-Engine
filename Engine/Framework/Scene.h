@@ -21,7 +21,17 @@ namespace crae
 
 		void Add(std::unique_ptr<Actor> actor);
 
+		template<typename T>
+		T* GetActor();
+
 	private:
 		std::list<std::unique_ptr<Actor>> m_actors;
 	};
+	template<typename T>
+	inline T* Scene::GetActor()
+	{
+		dynamic_cast<T*>()
+
+		return nullptr;
+	}
 }

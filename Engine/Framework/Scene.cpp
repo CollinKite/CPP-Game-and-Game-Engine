@@ -4,9 +4,19 @@ namespace crae
 {
 	void Scene::Update()
 	{
-		for (auto& actor : m_actors)
+		auto iter = m_actors.begin();
+
+		while(iter != m_actors.end())
 		{
-			actor->Update();
+			(*iter)->Update();
+			if ((*iter)->m_destroy)
+			{
+				iter = m_actors.erase(iter);
+			}
+			else
+			{
+				iter++;
+			}
 		}
 	}
 

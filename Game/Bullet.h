@@ -9,4 +9,5 @@ public:
 	void Update() override;
 private:
 	float m_speed = 200;
+	float m_lifespan = 2;
 };
