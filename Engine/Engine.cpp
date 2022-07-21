@@ -3,6 +3,6 @@
 namespace crae
 {
 	InputSystem g_inputSystem;
-	InputSystem g_renderer;
+	Renderer g_renderer;
 	Time g_time;
 }

@@ -25,9 +25,13 @@ namespace crae
 		void DrawPoint(float x, float y);
 		void DrawPoint(const Vector2& v, const Color& color);
 
+		int GetWidth() { return m_width; }
+		int GetHeight() { return m_height; }
+
 
 	private:
-
+		int m_width = 0;
+		int m_height = 0;
 		Color m_clearColor{ 0, 0, 0, 255 };
 
 		SDL_Renderer* m_renderer = nullptr; //member variables

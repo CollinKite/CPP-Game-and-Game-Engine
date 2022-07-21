@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Engine.h"
 #include "Math/MathUtils.h"
+#include "Bullet.h"
 
 #include <iostream>
 
@@ -53,15 +54,31 @@ void Player::Update()
 	//}
 
 	//face target
-	crae::Vector2 target = crae::g_inputSystem.GetMousePosition();
+	/*crae::Vector2 target = crae::g_inputSystem.GetMousePosition();
 	target = target - m_transform.postition;
-	m_transform.rotation = target.GetAngle();
+	m_transform.rotation = target.GetAngle();*/
 
+
+	//Calculate Velocity
 	crae::Vector2 direction{ 1, 0 };
 
 	direction = crae::Vector2::Rotate(direction, m_transform.rotation);
 	crae::Vector2 velocity = direction * thrust * crae::g_time.deltaTime; // move speed per second
 
 	m_transform.postition += velocity;
+
+	if (m_transform.postition.x > crae::g_renderer.GetWidth()) m_transform.postition.x = 0;
+	if (m_transform.postition.x < 0) m_transform.postition.x = crae::g_renderer.GetWidth();
+	if (m_transform.postition.y > crae::g_renderer.GetHeight()) m_transform.postition.y = 0;
+	if (m_transform.postition.y < 0) m_transform.postition.y = crae::g_renderer.GetHeight();
+
+	//Fire bullet
+	if (crae::g_inputSystem.GetKeyState(crae::key_space) == crae::InputSystem::Held)
+	{
+		//fire
+		crae::Transform transform = m_transform;
+		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(crae::Model{ "bullet.txt" }, transform);
+		m_scene->Add(std::move(bullet));
+	}
 
 }

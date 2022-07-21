@@ -18,6 +18,6 @@ namespace crae
 {
 	//extern defines NOT declares
 	extern InputSystem g_inputSystem;
-	extern InputSystem g_renderer;
+	extern Renderer g_renderer;
 	extern Time g_time;
 }

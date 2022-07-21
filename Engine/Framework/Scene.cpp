@@ -20,6 +20,7 @@ namespace crae
 
 	void Scene::Add(std::unique_ptr<Actor> actor)
 	{
+		actor->m_scene = this;
 		m_actors.push_back(std::move(actor)); //Change ownership of unique ptr, only need to do for single ownership
 	}
 }
