@@ -11,7 +11,7 @@ namespace crae
 
 		virtual void Update() = 0;
 
-		//Transform& GetTransform() { return m_transform; } //getter | put const so we can get the ref and read only
+		Transform& GetTransform() { return m_transform; } //getter | put const so we can get the ref and read only
 
 	private:
 

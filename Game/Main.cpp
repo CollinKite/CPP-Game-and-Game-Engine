@@ -19,7 +19,6 @@ int main()
 
 
 	crae::SetFilePath("../Assets");
-
 	crae::Scene scene;
 
 	// ** MAKE ACTOR **
@@ -37,7 +36,7 @@ int main()
 		transform.postition.x = crae::randomf(800);
 		transform.postition.y = crae::randomf(600);
 		transform.rotation = crae::randomf(math::DoublePi);
-		std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(crae::Model{ "model.txt" }, transform);
+		std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(crae::Model{ "Enemy.txt" }, transform);
 		scene.Add(std::move(enemy));
 	}
 
@@ -58,6 +57,8 @@ int main()
 
 	crae::g_renderer.Initialize();
 	crae::g_inputSystem.Initialize();
+	crae::g_audioSystem.Initialize();
+	crae::g_audioSystem.AddAudio("laser", "laser.wav");
 
 	//Create Window
 	crae::g_renderer.CreateWindow("Neumont", 800, 600);

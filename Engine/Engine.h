@@ -12,6 +12,7 @@
 #include "Math/Random.h"
 #include "Core/Time.h"
 #include "Math/MathUtils.h"
+#include "Audio/AudioSystem.h"
 
 
 namespace crae
@@ -20,4 +21,5 @@ namespace crae
 	extern InputSystem g_inputSystem;
 	extern Renderer g_renderer;
 	extern Time g_time;
+	extern AudioSystem g_audioSystem;
 }

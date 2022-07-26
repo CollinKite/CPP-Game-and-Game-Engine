@@ -30,8 +30,11 @@ namespace crae
 	template<typename T>
 	inline T* Scene::GetActor()
 	{
-		dynamic_cast<T*>()
-
+		for (auto& actor : m_actors)
+		{
+			T* result = dynamic_cast<T*>(actor.get());
+			if (result) return result;
+		}
 		return nullptr;
 	}
 }

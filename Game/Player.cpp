@@ -67,7 +67,7 @@ void Player::Update()
 	//Apply force to velocity
 	m_velocity += force;
 	//Apply drag
-	m_damping = 5;
+	m_damping = 3;
 	m_velocity *= 1.0f / (1.0f + m_damping * crae::g_time.deltaTime);
 
 	m_transform.postition += m_velocity * crae::g_time.deltaTime;
@@ -82,8 +82,10 @@ void Player::Update()
 	{
 		//fire
 		crae::Transform transform = m_transform;
+		transform.scale = 2;
 		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(crae::Model{ "bullet.txt" }, transform);
 		m_scene->Add(std::move(bullet));
+		crae::g_audioSystem.PlayAudio("laser");
 	}
 
 }

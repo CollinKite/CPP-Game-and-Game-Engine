@@ -24,6 +24,9 @@
     <Filter Include="Source Files\Framework">
       <UniqueIdentifier>{dacedaae-f61a-4d57-853c-752ff8fe3161}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Audio">
+      <UniqueIdentifier>{06cbeb88-3138-4257-8d51-e74c41fbab0a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -55,6 +58,9 @@
     </ClCompile>
     <ClCompile Include="Framework\Scene.cpp">
       <Filter>Source Files\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio\AudioSystem.cpp">
+      <Filter>Source Files\Audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +108,9 @@
     </ClInclude>
     <ClInclude Include="Framework\Scene.h">
       <Filter>Source Files\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\AudioSystem.h">
+      <Filter>Source Files\Audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
