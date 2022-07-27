@@ -27,6 +27,8 @@ namespace crae
 
 		int GetWidth() { return m_width; }
 		int GetHeight() { return m_height; }
+		
+		friend class Text;
 
 
 	private:

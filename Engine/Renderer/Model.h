@@ -19,9 +19,12 @@ namespace crae
 
 		void Load(const std::string& filename);
 
+		float GetRadius() { return m_radius; }
 
 	private:
 		crae::Color m_color {0,0,0,0};
 		std::vector<crae::Vector2> m_points;
+
+		float m_radius = 0;
 	};
 }

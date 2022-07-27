@@ -3,6 +3,8 @@
 #include "Engine.h"
 #include "Enemy.h"
 #include "Bullet.h"
+#include "Renderer/Font.h"
+#include "Renderer/Text.h"
 
 #include <iostream>
 #include<vector>
@@ -63,12 +65,16 @@ int main()
 	//Create Window
 	crae::g_renderer.CreateWindow("Neumont", 800, 600);
 	crae::g_renderer.SetClearColor(crae::Color{ 0,0,0,255 });
+	crae::Font* font = new crae::Font("fonts/Montserrat.ttf", 24);
+	crae::Text title(font);
+	title.Create(crae::g_renderer, "Collin", { 0, 0, 255, 255 });
 
 	bool quit = false;
 	while (!quit)
 	{
 		crae::g_inputSystem.Update();
 		crae::g_time.Tick(); //Increment time, and frame time
+		
 
 		//std::cout << crae::g_time.deltaTime << std::endl;
 
@@ -79,8 +85,10 @@ int main()
 
 		crae::g_renderer.BeginFrame();
 		scene.Draw(crae::g_renderer);
+		title.Draw(crae::g_renderer, { 400, 300 });
 
 		crae::g_renderer.EndFrame();
-	}	
+	}
+	delete font;
 	crae::g_renderer.Shutdown();
 }
