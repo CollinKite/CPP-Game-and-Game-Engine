@@ -19,6 +19,8 @@ namespace crae
 
 		void Load(const std::string& filename);
 
+		float CalculateRadius();
+
 		float GetRadius() { return m_radius; }
 
 	private:

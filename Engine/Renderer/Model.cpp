@@ -8,6 +8,7 @@ namespace crae
 	Model::Model(const std::string& filename)
 	{
 		Load(filename);
+		m_radius = CalculateRadius();
 	}
 	void Model::Draw(Renderer& renderer, Vector2& position, float angle, float scale)
 	{
@@ -50,6 +51,20 @@ namespace crae
 
 			m_points.push_back(point);
 		}
+	}
+	float Model::CalculateRadius()
+	{
+		float radius = 0;
+
+		for (auto& point : m_points)
+		{
+			if (radius < point.Length())
+			{
+				radius = point.Length();
+			}
+		}
+
+		return radius;
 	}
 }
 
