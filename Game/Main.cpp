@@ -67,7 +67,9 @@ int main()
 	crae::g_renderer.SetClearColor(crae::Color{ 0,0,0,255 });
 	crae::Font* font = new crae::Font("fonts/Montserrat.ttf", 24);
 	crae::Text title(font);
-	title.Create(crae::g_renderer, "Collin", { 0, 0, 255, 255 });
+	title.Create(crae::g_renderer, "Paused", { 0, 0, 255, 255 });
+
+	float spawnTimer = 2;
 
 	bool quit = false;
 	while (!quit)
@@ -80,14 +82,38 @@ int main()
 
 		if (crae::g_inputSystem.GetKeyDown(crae::key_escape)) quit = true;
 
+		//spawn enemys
+		spawnTimer -= crae::g_time.deltaTime;
+		if (spawnTimer <= 0)
+		{
+			spawnTimer = 2;
+			transform.postition.x = crae::randomf(800);
+			transform.postition.y = crae::randomf(600);
+			transform.rotation = crae::randomf(math::DoublePi);
+			std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>(crae::Model{ "Enemy.txt" }, transform);
+			scene.Add(std::move(enemy));
+		}
+
 		scene.Update();
 
-
+		bool pause = false;
+		if (crae::g_inputSystem.GetKeyDown(crae::key_p)) pause = !pause;
 		crae::g_renderer.BeginFrame();
 		scene.Draw(crae::g_renderer);
-		title.Draw(crae::g_renderer, { 400, 300 });
+		if (pause)
+		{
+			
+			title.Draw(crae::g_renderer, { 400, 300 });
+		}
 
 		crae::g_renderer.EndFrame();
+		while (pause)
+		{
+			if (crae::g_inputSystem.GetButtonDown(crae::button_))
+			{
+				pause = !pause;
+			}
+		}
 	}
 	delete font;
 	crae::g_renderer.Shutdown();

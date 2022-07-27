@@ -15,10 +15,13 @@ namespace crae
 		virtual void Update() override {}; //Overide method from Game Object
 		virtual void Draw(Renderer& renderer);
 
+		virtual void OnCollision(Actor* other) {}
 		float GetRadius() { return m_model.GetRadius(); }
+		std::string& GetTag() { return m_tag; }
 
 		friend class Scene;
 	protected:
+		std::string m_tag; //enemy & player
 		bool m_destroy = false;
 		//physics
 		float m_damping = 1;

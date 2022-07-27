@@ -84,8 +84,18 @@ void Player::Update()
 		crae::Transform transform = m_transform;
 		transform.scale = 2;
 		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(crae::Model{ "bullet.txt" }, transform);
+		bullet->GetTag() = "player";
 		m_scene->Add(std::move(bullet));
 		crae::g_audioSystem.PlayAudio("laser");
 	}
 
+}
+
+void Player::OnCollision(Actor* other)
+{
+	if (dynamic_cast<Bullet*>(other) && other->GetTag() == "enemy")
+	{
+		m_health -= dynamic_cast<Bullet*>(other)->GetDamage();
+		if(m_health <= 0) m_destroy = true;
+	}
 }

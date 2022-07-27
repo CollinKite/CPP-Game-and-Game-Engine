@@ -31,7 +31,9 @@ namespace crae
 
 				if (distance < radius)
 				{
-					std::cout << "Collided!" << std::endl;
+					//Actors Collided
+					(*iter1)->OnCollision((*iter2).get());
+					(*iter2)->OnCollision((*iter1).get());
 				}
 			}
 		}

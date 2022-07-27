@@ -50,6 +50,7 @@ namespace crae
 	};
 
 	extern const uint32_t key_space;
+	extern const uint32_t key_p;
 	extern const uint32_t key_up;
 	extern const uint32_t key_down;
 	extern const uint32_t key_left;

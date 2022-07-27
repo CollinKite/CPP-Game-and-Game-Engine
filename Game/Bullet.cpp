@@ -1,4 +1,6 @@
 #include "Bullet.h"
+#include "Player.h"
+#include "Enemy.h"
 #include "Engine.h"
 
 	void Bullet::Update()
@@ -21,5 +23,17 @@
 		if (m_transform.postition.x < 0) m_transform.postition.x = (float)crae::g_renderer.GetWidth();
 		if (m_transform.postition.y > (float)crae::g_renderer.GetHeight()) m_transform.postition.y = 0;
 		if (m_transform.postition.y < 0) m_transform.postition.y = (float)crae::g_renderer.GetHeight();
+	}
+
+	void Bullet::OnCollision(Actor* other)
+	{
+		if (dynamic_cast<Player*>(other) && m_tag != "player")
+		{
+			m_destroy = true;
+		}
+		if (dynamic_cast<Enemy*>(other) && m_tag != "enemy")
+		{
+			m_destroy = true;
+		}
 	}
 

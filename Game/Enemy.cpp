@@ -18,6 +18,7 @@ void Enemy::Update()
 		crae::Transform transform = m_transform;
 		transform.scale = 2;
 		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(crae::Model{ "bullet.txt" }, transform);
+		bullet->GetTag() = "enemy";
 		m_scene->Add(std::move(bullet));
 		crae::g_audioSystem.PlayAudio("laser");
 	}
@@ -42,4 +43,13 @@ void Enemy::Update()
 
 	if (m_transform.postition.y > crae::g_renderer.GetHeight()) m_transform.postition.y = 0;
 	if (m_transform.postition.y < 0) m_transform.postition.y = crae::g_renderer.GetHeight();
+}
+
+void Enemy::OnCollision(Actor* other)
+{
+	if (dynamic_cast<Bullet*>(other) && other->GetTag() == "player")
+	{
+		m_health -= dynamic_cast<Bullet*>(other)->GetDamage();
+		if (m_health <= 0) m_destroy = true;
+	}
 }

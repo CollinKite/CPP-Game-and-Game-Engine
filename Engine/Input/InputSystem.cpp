@@ -5,6 +5,7 @@
 namespace crae
 {
 	const uint32_t key_space = SDL_SCANCODE_SPACE;
+	const uint32_t key_p = SDL_SCANCODE_P;
 	const uint32_t key_up = SDL_SCANCODE_UP;
 	const uint32_t key_down = SDL_SCANCODE_DOWN;
 	const uint32_t key_left = SDL_SCANCODE_LEFT;
