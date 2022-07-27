@@ -33,7 +33,7 @@ int main()
 	std::unique_ptr<Player> player = std::make_unique<Player>(crae::Model{ "model.txt" }, transform);
 	scene.Add(std::move(player));
 
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		transform.postition.x = crae::randomf(800);
 		transform.postition.y = crae::randomf(600);

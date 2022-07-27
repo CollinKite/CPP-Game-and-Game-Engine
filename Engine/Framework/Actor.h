@@ -15,6 +15,8 @@ namespace crae
 		virtual void Update() override {}; //Overide method from Game Object
 		virtual void Draw(Renderer& renderer);
 
+		float GetRadius() { return m_model.GetRadius(); }
+
 		friend class Scene;
 	protected:
 		bool m_destroy = false;
