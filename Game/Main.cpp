@@ -109,7 +109,20 @@ int main()
 		crae::g_renderer.EndFrame();
 		while (pause)
 		{
-			if (crae::g_inputSystem.GetButtonDown(crae::button_))
+			crae::g_inputSystem.Update();
+			if (crae::g_inputSystem.GetKeyDown(crae::key_up))
+			{
+				pause = !pause;
+			}
+			if (crae::g_inputSystem.GetKeyDown(crae::key_down))
+			{
+				pause = !pause;
+			}
+			if (crae::g_inputSystem.GetKeyDown(crae::key_left))
+			{
+				pause = !pause;
+			}
+			if (crae::g_inputSystem.GetKeyDown(crae::key_right))
 			{
 				pause = !pause;
 			}
