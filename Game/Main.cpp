@@ -110,6 +110,7 @@ int main()
 		while (pause)
 		{
 			crae::g_inputSystem.Update();
+			crae::g_time.Tick(); //Increment time, and frame time
 			if (crae::g_inputSystem.GetKeyDown(crae::key_up))
 			{
 				pause = !pause;
