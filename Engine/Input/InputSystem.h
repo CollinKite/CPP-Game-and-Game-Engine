@@ -66,4 +66,5 @@ namespace crae
 	extern const uint32_t key_A;
 	extern const uint32_t key_S;
 	extern const uint32_t key_D;
+	extern const uint32_t key_F;
 }

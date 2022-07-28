@@ -18,6 +18,7 @@ namespace crae
 	const uint32_t key_A = SDL_SCANCODE_A;
 	const uint32_t key_S = SDL_SCANCODE_S;
 	const uint32_t key_D = SDL_SCANCODE_D;
+	const uint32_t key_F = SDL_SCANCODE_F;
 
 	//Mouse
 	const uint32_t button_left = 0;

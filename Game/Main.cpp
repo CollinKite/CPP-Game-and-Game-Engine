@@ -44,6 +44,8 @@ int main()
 
 			if (crae::g_inputSystem.GetKeyDown(crae::key_escape)) quit = true;
 
+			if (crae::g_inputSystem.GetKeyDown(crae::key_F)) crae::g_renderer.SetWindowFullScreen();
+
 			game.Update();
 
 			if (crae::g_inputSystem.GetKeyDown(crae::key_p)) game.pause = !game.pause;

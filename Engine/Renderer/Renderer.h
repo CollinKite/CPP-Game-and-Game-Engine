@@ -18,7 +18,7 @@ namespace crae
 		void Shutdown();
 
 		void CreateWindow(const char * name, int width, int height);
-		void SetWindowFullScreen(SDL_Window* window);
+		void SetWindowFullScreen();
 		void BeginFrame(); //Clear screen so we can draw to it
 		void EndFrame();
 		void SetClearColor(const Color& color) { m_clearColor = color; }

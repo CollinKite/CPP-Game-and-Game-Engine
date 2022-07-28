@@ -36,9 +36,9 @@ namespace crae
 		m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
 	}
 
-	void Renderer::SetWindowFullScreen(SDL_Window* window)
+	void Renderer::SetWindowFullScreen()
 	{
-		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+		SDL_SetWindowFullscreen(m_window, SDL_WINDOW_FULLSCREEN);
 	}
 
 	void Renderer::BeginFrame()
