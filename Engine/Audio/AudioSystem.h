@@ -23,7 +23,7 @@ namespace crae
 		void Update();
 
 		void AddAudio(const std::string& name, const std::string& filename);
-		void PlayAudio(const std::string& name);
+		void PlayAudio(const std::string& name, bool loop = false);
 
 	private:
 		FMOD::System* m_fmodSystem;

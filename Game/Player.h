@@ -11,9 +11,9 @@ public:
 	void OnCollision(Actor* other) override;
 
 private:
-	float m_health = { 10 };
+	float m_health = {100};
 
 	float m_speed{ 0 };
 	float m_maxspeed{ 1000 };
-	float m_thrustspeed{ 1500 };
+	float m_thrustspeed{ 2500 };
 };

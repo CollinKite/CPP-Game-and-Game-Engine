@@ -14,6 +14,5 @@ public:
 
 private:
 	float m_damage = 1;
-	float m_speed = 200;
-	float m_lifespan = 2;
+	float m_speed = 100;
 };

@@ -11,6 +11,16 @@ namespace crae
 		TTF_Init();
 	}
 
+	
+	//void Renderer::FullScreen(SDL_Window* window, bool currentState)
+	//{
+	//	isFullScreen = !currentState;
+
+	//	SDL_SetWindowFullscreen(window, !currentState);
+	//	SDL_ShowCursor(currentState);
+	//}
+
+
 	void Renderer::Shutdown()
 	{
 		SDL_DestroyRenderer(m_renderer);

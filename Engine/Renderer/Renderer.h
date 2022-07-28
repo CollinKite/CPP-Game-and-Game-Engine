@@ -9,6 +9,8 @@ namespace crae
 	class Renderer
 	{
 	public:
+		bool isFullscreen = false;
+
 		Renderer() = default; //Creates Default
 		~Renderer() = default; // Implicitly already made if you didn't add constructor, and destructor
 
@@ -16,6 +18,7 @@ namespace crae
 		void Shutdown();
 
 		void CreateWindow(const char * name, int width, int height);
+		//void FullScreen();
 		void BeginFrame(); //Clear screen so we can draw to it
 		void EndFrame();
 		void SetClearColor(const Color& color) { m_clearColor = color; }

@@ -42,13 +42,14 @@ namespace crae
 		}
 	}
 
-	void AudioSystem::PlayAudio(const std::string& name)
+	void AudioSystem::PlayAudio(const std::string& name, bool loop)
 	{
 		auto iter = m_sounds.find(name); // !! use find() on m_sounds and return the iterator 
 			if (iter != m_sounds.end()) // !! if iterator is not m_sounds.end() 
 			{
 
 				FMOD::Sound* sound = iter->second;
+				if (loop) sound->setMode(FMOD_LOOP_NORMAL); //Use normal loop to loop sound. Used for music
 				sound->setMode(FMOD_LOOP_OFF);
 
 				FMOD::Channel* channel;

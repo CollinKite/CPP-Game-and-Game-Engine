@@ -26,6 +26,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="SpaceShooter.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -35,6 +38,9 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceShooter.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

@@ -47,6 +47,11 @@ void Player::Update()
 		//position.y -= 2;
 	}
 
+	if (crae::g_inputSystem.GetKeyDown(crae::key_LShift))
+	{
+		thrust = m_thrustspeed;
+	}
+
 	//if (inputSystem.GetKeyDown(crae::key_down))
 	//{
 	//	//std::cout << "left\n";
@@ -78,12 +83,12 @@ void Player::Update()
 	if (m_transform.postition.y < 0) m_transform.postition.y = (float)crae::g_renderer.GetHeight();
 
 	//Fire bullet
-	if (crae::g_inputSystem.GetKeyState(crae::key_space) == crae::InputSystem::Held)
+	if (crae::g_inputSystem.GetKeyState(crae::key_space) == crae::InputSystem::Pressed)
 	{
 		//fire
 		crae::Transform transform = m_transform;
 		transform.scale = 2;
-		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(crae::Model{ "bullet.txt" }, transform);
+		std::unique_ptr<Bullet> bullet = std::make_unique<Bullet>(crae::Model{ "bullet.txt" }, transform, 100);
 		bullet->GetTag() = "player";
 		m_scene->Add(std::move(bullet));
 		crae::g_audioSystem.PlayAudio("laser");

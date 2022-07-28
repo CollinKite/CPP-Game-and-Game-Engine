@@ -50,6 +50,6 @@ void Enemy::OnCollision(Actor* other)
 	if (dynamic_cast<Bullet*>(other) && other->GetTag() == "player")
 	{
 		m_health -= dynamic_cast<Bullet*>(other)->GetDamage();
-		if (m_health <= 0) m_destroy = true;
+		if (m_health <= 0) m_destroy = true; m_scene->GetGame()->AddPoints(100);
 	}
 }
