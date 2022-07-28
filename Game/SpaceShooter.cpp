@@ -21,6 +21,7 @@ void SpaceShooter::Initialize()
 
 	m_PauseText = std::make_unique<crae::Text>(m_font.get());
 	m_PauseText->Create(crae::g_renderer, "Pause", { 0,0,255,255 });
+	crae::g_audioSystem.PlayAudio("music", true);
 
 
 	// ** MAKE ACTOR **
