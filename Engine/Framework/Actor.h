@@ -23,6 +23,7 @@ namespace crae
 	protected:
 		std::string m_tag; //enemy & player
 		bool m_destroy = false;
+		bool m_loselife = false;
 		//physics
 		float m_damping = 1;
 		Vector2 m_velocity;

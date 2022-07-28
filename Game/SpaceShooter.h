@@ -5,6 +5,7 @@ namespace crae
 {
 	class Font;
 	class Text;
+	class Player;
 }
 
 class SpaceShooter : public crae::Game

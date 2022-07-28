@@ -10,44 +10,44 @@ void Player::Update()
 
 	//std::cout << "x: " << crae::g_inputSystem.GetMousePosition().x << " " << "y: " << crae::g_inputSystem.GetMousePosition().y << std::endl;
 
-	if (crae::g_inputSystem.GetButtonDown(crae::button_left))
-	{
-		//std::cout << "Left Mouse Button Pressed";
-	}
+	//if (crae::g_inputSystem.GetButtonDown(crae::button_left))
+	//{
+	//	//std::cout << "Left Mouse Button Pressed";
+	//}
 
-	if (crae::g_inputSystem.GetButtonDown(crae::button_middle))
-	{
-		//std::cout << "Middle Mouse Button Pressed" << std::endl;
-	}
+	//if (crae::g_inputSystem.GetButtonDown(crae::button_middle))
+	//{
+	//	//std::cout << "Middle Mouse Button Pressed" << std::endl;
+	//}
 
-	if (crae::g_inputSystem.GetButtonDown(crae::button_right))
-	{
-		//std::cout << "Right Mouse Button Pressed" << std::endl;
-	}
+	//if (crae::g_inputSystem.GetButtonDown(crae::button_right))
+	//{
+	//	//std::cout << "Right Mouse Button Pressed" << std::endl;
+	//}
 
 	float thrust = m_speed;
 
 
-	if (crae::g_inputSystem.GetKeyDown(crae::key_left))
+	if (crae::g_inputSystem.GetKeyDown(key_left))
 	{
 		m_transform.rotation -= math:: Pi * crae::g_time.deltaTime;
 	}
 
-	if (crae::g_inputSystem.GetKeyDown(crae::key_right))
+	if (crae::g_inputSystem.GetKeyDown(key_right))
 	{
 		//std::cout << "left\n";
 		//position.x += 2;
 		m_transform.rotation += 0.1f;
 	}
 
-	if (crae::g_inputSystem.GetKeyDown(crae::key_up))
+	if (crae::g_inputSystem.GetKeyDown(key_up))
 	{
 		thrust = m_maxspeed;
 		//std::cout << "left\n";
 		//position.y -= 2;
 	}
 
-	if (crae::g_inputSystem.GetKeyDown(crae::key_LShift))
+	if (crae::g_inputSystem.GetKeyDown(key_thrust))
 	{
 		thrust = m_thrustspeed;
 	}
@@ -83,7 +83,7 @@ void Player::Update()
 	if (m_transform.postition.y < 0) m_transform.postition.y = (float)crae::g_renderer.GetHeight();
 
 	//Fire bullet
-	if (crae::g_inputSystem.GetKeyState(crae::key_space) == crae::InputSystem::Pressed)
+	if (crae::g_inputSystem.GetKeyState(key_shoot) == crae::InputSystem::Pressed)
 	{
 		//fire
 		crae::Transform transform = m_transform;
@@ -101,6 +101,6 @@ void Player::OnCollision(Actor* other)
 	if (dynamic_cast<Bullet*>(other) && other->GetTag() == "enemy")
 	{
 		m_health -= dynamic_cast<Bullet*>(other)->GetDamage();
-		if(m_health <= 0) m_destroy = true;
+		if (m_health <= 0) m_destroy = true;
 	}
 }

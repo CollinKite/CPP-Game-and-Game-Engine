@@ -19,14 +19,13 @@ namespace crae
 		virtual void Draw(Renderer& renderer) = 0;
 
 		int GetScore() { return m_score; }
-		int GetLives() { return m_lives; }
+		
 
 		void AddPoints(int points) { m_score += points; }
 
 	protected:
 		std::unique_ptr<Scene> m_scene;
 		int m_score = 0;
-		int m_lives = 3;
 
 	};
 }

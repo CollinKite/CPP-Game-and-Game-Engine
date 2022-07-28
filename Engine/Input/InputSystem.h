@@ -60,4 +60,10 @@ namespace crae
 	extern const uint32_t button_middle;
 	extern const uint32_t button_right;
 	extern const uint32_t key_LShift;
+	extern const uint32_t key_RShift;
+	extern const uint32_t key_RCTRL;
+	extern const uint32_t key_W;
+	extern const uint32_t key_A;
+	extern const uint32_t key_S;
+	extern const uint32_t key_D;
 }
